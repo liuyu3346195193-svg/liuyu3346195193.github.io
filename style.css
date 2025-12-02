@@ -1,21 +1,21 @@
 /*
- * FUTURE DATA PANEL THEME V3.0 - 最终优化版
- * 主色调：深紫蓝 (背景), 亮青色/荧光绿 (高亮/霓虹)
+ * FUTURE DATA PANEL THEME V3.1 - LIGHT MODE (明亮科技版)
+ * 主色调：白色/浅灰 (背景), 深科技蓝 (文字), 翠绿/深青 (高亮)
  */
 
-/* 1. 全局设置和背景增强 */
+/* 1. 全局设置和背景 - 切换为明亮模式 */
 body {
-    background-color: #0d1a2f; /* 深紫蓝色背景 */
-    color: #c0c8d1; /* 默认文字颜色：浅灰蓝 */
+    background-color: #f5f7fa; /* 极浅的灰白色，比纯白更护眼 */
+    color: #2c3e50; /*以此深蓝灰色作为主文字颜色，代替纯黑，更有质感 */
     font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    /* 增加一个全局的网格/噪点背景，模拟数据屏幕 */
+    /* 调整网格背景：使用极淡的灰色网格 */
     background-image: 
-        linear-gradient(rgba(0, 229, 255, 0.05) 1px, transparent 1px), 
-        linear-gradient(90deg, rgba(0, 229, 255, 0.05) 1px, transparent 1px);
+        linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px), 
+        linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
     background-size: 20px 20px;
 }
 
@@ -23,29 +23,28 @@ body {
     max-width: 1000px;
     margin: 0 auto;
     padding: 50px 40px;
-    /* 增加内发光效果 */
-    box-shadow: inset 0 0 80px rgba(0, 255, 127, 0.15); 
+    /* 移除内发光，改为轻微的深色投影 */
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.05); 
+    background-color: #ffffff; /* 容器本身为纯白 */
 }
 
-/* 2. 头部信息和霓虹效果 - 修正版本 */
+/* 2. 头部信息 - 颜色加深以适应白底 */
 .header {
     padding-bottom: 20px;
     transition: all 0.3s ease-in-out; 
 }
 .header h1 {
-    color: #00ff80; /* 荧光绿 */
-    border-bottom: 3px solid #00ff80;
+    color: #008f58; /* 将荧光绿改为深翠绿 */
+    border-bottom: 3px solid #008f58;
     padding-bottom: 15px;
-    margin-bottom: 0; /* 适应 Flex 布局 */
+    margin-bottom: 0;
     font-size: 2.8em; 
     letter-spacing: 3px;
-    /* 降低霓虹发光强度，增强文字边缘清晰度 */
-    text-shadow: 
-        0 0 3px rgba(0, 255, 128, 0.7), /* 柔和的发光 */
-        0 0 8px rgba(0, 255, 128, 0.5); /* 较弱的扩散 */
+    /* 移除霓虹发光，改为轻微的文字阴影增加立体感 */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-/* 头部照片容器 - 标题和照片分居两侧 */
+/* 头部照片容器 */
 .profile-header {
     display: flex;
     align-items: center;
@@ -54,135 +53,138 @@ body {
     padding: 0 5px; 
 }
 
-/* 核心照片样式：圆形、边框、霓虹发光 */
+/* 核心照片样式 */
 .profile-photo {
     width: 120px;
     height: 120px;
     object-fit: cover; 
     border-radius: 50%;
-    border: 3px solid #00e5ff; 
+    /* 边框颜色加深为科技蓝 */
+    border: 3px solid #007acc; 
     
-    /* 霓虹发光效果 */
-    box-shadow: 
-        0 0 5px #00e5ff, 
-        0 0 15px #00e5ff, 
-        0 0 25px rgba(0, 229, 255, 0.5); 
+    /* 调整阴影为柔和的蓝色投影 */
+    box-shadow: 0 5px 15px rgba(0, 122, 204, 0.3); 
     
-    /* 增加一个轻微的背景遮罩，使照片融入暗黑环境 */
-    background-color: rgba(13, 26, 47, 0.8);
+    /* 背景改为白色 */
+    background-color: #fff;
     padding: 3px;
 }
 
-/* 联系信息 - 统一排版居中对齐 */
+/* 联系信息 */
 .contact-info {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* 重点：居中对齐联系信息 */
+    justify-content: center;
     gap: 10px 25px; 
     font-family: 'Consolas', monospace;
-    font-size: 0.9em; /* 略微缩小，更精简 */
-    color: #778899;
+    font-size: 0.9em;
+    color: #546e7a; /* 次级文字颜色：灰蓝 */
     margin-bottom: 30px;
     padding-left: 0; 
-    border-top: 1px dashed rgba(0, 229, 255, 0.2); /* 增加顶部虚线，分割标题和信息 */
+    border-top: 1px dashed rgba(0, 0, 0, 0.1); /* 虚线变灰 */
     padding-top: 15px;
 }
 
 .contact-info a {
-    color: #00e5ff;
+    color: #007acc; /* 链接改为科技蓝 */
     text-decoration: none;
     transition: color 0.3s;
+    font-weight: 500;
 }
 .contact-info a:hover {
-    color: #ffff00; /* 鼠标悬停变色 */
+    color: #d35400; /* 鼠标悬停变为深橙色，形成对比 */
+    text-decoration: underline;
 }
 
 /* 作品集链接特别样式 */
 .portfolio-link {
-    color: #ffff00 !important; 
-    text-decoration: none;
+    color: #fff !important; /* 文字白色 */
+    background-color: #007acc; /* 背景蓝色 */
+    border: 1px solid #007acc; 
     font-weight: bold;
-    background-color: rgba(255, 255, 0, 0.15); 
-    border: 1px solid #ffff00; 
     padding: 5px 10px;
     border-radius: 3px;
     letter-spacing: 1px;
     transition: all 0.2s ease-in-out;
+    text-decoration: none !important;
 }
 
 .portfolio-link:hover {
-    color: #0d1a2f !important; 
-    background-color: #ffff00;
-    box-shadow: 0 0 10px #ffff00;
+    color: #fff !important; 
+    background-color: #005c99; /* 悬停加深 */
+    box-shadow: 0 2px 8px rgba(0, 122, 204, 0.4);
 }
 
-/* 确保 strong 标签内的链接也能继承这些样式 */
 .contact-info strong {
-    background-color: transparent !important; /* 移除 strong 默认背景，避免冲突 */
+    background-color: transparent !important;
     padding: 0;
+    color: #333; /* 标签颜色加深 */
 }
 
-/* 3. 模块卡片化 (Section) - 增加悬停过渡效果 */
+/* 3. 模块卡片化 - 白底悬浮风格 */
 .section {
     margin-bottom: 40px;
     padding: 20px;
-    background-color: rgba(13, 26, 47, 0.7); /* 透明度背景 */
-    /* 模块边框，使用亮青色霓虹 */
-    border: 1px solid rgba(0, 229, 255, 0.3);
-    box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+    /* 背景改为白色或极淡灰 */
+    background-color: #ffffff; 
+    /* 边框变细，灰色 */
+    border: 1px solid #e1e4e8;
+    /* 增加卡片投影 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
     border-radius: 5px;
-    transition: all 0.3s ease-in-out; /* 增加过渡效果 */
+    transition: all 0.3s ease-in-out;
 }
 
-/* 模块悬停发光 */
+/* 模块悬停效果 */
 .section:hover {
-    border: 1px solid #00ffff;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+    border: 1px solid #007acc; /* 悬停时边框变蓝 */
+    box-shadow: 0 5px 20px rgba(0, 122, 204, 0.15); /* 投影加深 */
     transform: translateY(-2px); 
 }
 
-/* 模块标题 (H2) - 嵌入式标题栏 */
+/* 模块标题 (H2) */
 .section h2 {
     background-color: transparent; 
-    color: #00e5ff; 
+    color: #007acc; /* 科技蓝 */
     padding: 5px 0;
     margin-top: 0;
     margin-bottom: 20px;
-    border-left: 5px solid #00e5ff; 
+    border-left: 5px solid #007acc; 
     padding-left: 15px;
     text-transform: uppercase;
     font-size: 1.6em;
     letter-spacing: 1px;
-    text-shadow: 0 0 5px rgba(0, 229, 255, 0.5);
+    text-shadow: none; /* 移除发光 */
 }
 
-/* 4. 列表项目（内容主体）- 增强数据点感 */
+/* 4. 列表项目 */
 ul {
     list-style: none;
     padding-left: 0;
     font-size: 0.95em;
+    color: #34495e; /* 列表文字深灰 */
 }
 
 ul li {
     padding-left: 35px; 
     margin-bottom: 15px;
     position: relative;
-    border-left: 1px dashed rgba(255, 255, 255, 0.1); 
+    border-left: 1px dashed #dce1e6; /* 左侧虚线导轨 */
     padding-top: 2px;
     padding-bottom: 2px;
-    transition: all 0.2s; /* 增加过渡效果 */
+    transition: all 0.2s;
 }
 
-/* 列表项悬停：文字变白，背景高亮 */
+/* 列表项悬停 */
 ul li:hover {
-    color: #ffffff; 
-    background-color: rgba(0, 229, 255, 0.05); 
+    color: #000; 
+    background-color: rgba(0, 122, 204, 0.05); /* 极淡的蓝色背景 */
 }
 
-/* 自定义项目符号（数据点） */
+/* 自定义项目符号 */
 ul li::before {
     content: '▶'; 
-    color: #00ff80; 
+    color: #008f58; /* 深绿色箭头 */
     font-weight: bold;
     position: absolute;
     left: 10px; 
@@ -190,33 +192,34 @@ ul li::before {
     font-size: 0.8em;
 }
 
-/* 粗体关键词 (数据、指标、成就) - 提升对比度 */
+/* 粗体关键词 (数据、指标) */
 strong {
-    color: #fff; /* 关键字文字改为白色 */
+    color: #008f58; /* 关键词改为深绿色 */
     font-weight: 700;
-    background-color: rgba(255, 255, 0, 0.2); 
-    padding: 3px 6px;
+    /* 背景改为淡绿色高亮 */
+    background-color: rgba(0, 143, 88, 0.1); 
+    padding: 1px 4px;
     border-radius: 2px;
     letter-spacing: 0.5px;
 }
 
-/* HR 分隔线 - 移除多余的 HR */
 hr {
-    display: none; /* 隐藏所有 <hr> 标签，使用 contact-info 的 border-top 代替 */
+    display: none;
 }
 
-/* 时间线/工作/项目经验标题 (H3) */
+/* 时间线/项目标题 (H3) */
 .timeline-item h3, .project-item h3 {
-    color: #00ff80; 
+    color: #2c3e50; /* 标题深色 */
     font-size: 1.2em;
     margin-top: 10px;
     margin-bottom: 8px;
-    border-left: 3px solid #00ff80;
+    border-left: 3px solid #008f58; /* 绿色左边框 */
     padding-left: 10px;
+    font-weight: 600;
 }
 
 .timeline-item p {
-    color: #8899aa; 
+    color: #607d8b; /* 说明文字灰蓝 */
     font-size: 0.9em;
     padding-left: 15px;
     margin-bottom: 10px;
@@ -225,7 +228,7 @@ hr {
 .project-item {
     margin-bottom: 30px;
     padding-bottom: 10px;
-    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    border-bottom: 1px dashed #e1e4e8;
 }
 
 /* --- 布局核心：两栏 Grid --- */
@@ -236,22 +239,20 @@ hr {
     margin-top: 30px;
 }
 
-/* --- 侧边栏样式 (左栏) - 修复底部留白问题 --- */
+/* --- 侧边栏样式 (左栏) --- */
 .sidebar {
     padding-right: 20px;
-    border-right: 2px dashed rgba(0, 229, 255, 0.2); 
-    /* 核心修复：父容器背景透明 */
+    border-right: 2px dashed #dce1e6; 
     background-color: transparent !important; 
 }
 
-/* 侧边栏模块的紧凑样式 - 确保有独立的背景和边框 */
+/* 侧边栏模块 */
 .sidebar-section {
     padding: 15px; 
     margin-bottom: 25px; 
-    /* 核心修复：重新应用背景和边框 */
-    background-color: rgba(13, 26, 47, 0.7); /* 透明度背景 */
-    border: 1px solid rgba(0, 229, 255, 0.3);
-    box-shadow: 0 0 10px rgba(0, 255, 127, 0.1);
+    background-color: #f8f9fa; /* 侧边栏卡片背景微灰，区分层级 */
+    border: 1px solid #e1e4e8;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
     border-radius: 5px;
 }
 
@@ -260,10 +261,9 @@ hr {
     letter-spacing: 0.5px;
     margin-bottom: 10px;
     padding-left: 10px;
-    /* 侧边栏标题样式统一 */
-    color: #00e5ff; 
-    border-left: 4px solid #00e5ff; 
-    text-shadow: 0 0 5px rgba(0, 229, 255, 0.5); 
+    color: #007acc; 
+    border-left: 4px solid #007acc; 
+    text-shadow: none;
 }
 
 .sidebar-section ul li {
@@ -271,9 +271,9 @@ hr {
     margin-bottom: 8px;
     padding-left: 20px;
     border-left: none; 
+    color: #34495e;
 }
 
-/* 侧边栏的项目符号调整 */
 .sidebar-section ul li::before {
     font-size: 0.7em;
     left: 0; 
@@ -284,136 +284,76 @@ hr {
     padding-left: 20px;
 }
 
-/* 主内容区模块的间距 */
 .main-section {
     padding: 25px;
     margin-bottom: 40px;
 }
 
-/* =========================================
-   打印专用样式 (Print Styles) - 修正版 v2.0
-   核心逻辑：强制白底黑字，移除特效，保留布局
-   ========================================= */
+/* --- 打印样式 (Print) --- */
 @media print {
-    /* 1. 全局重置：白底黑字 */
     body {
-        background: #ffffff !important;
-        background-color: #ffffff !important;
-        background-image: none !important; /* 移除网格背景 */
-        color: #000000 !important; /* 纯黑文字 */
-        -webkit-print-color-adjust: exact;
-        font-size: 12pt; /* 打印时字号稍微调大更易读 */
+        background: #fff !important;
+        color: #000 !important;
+        background-image: none !important;
     }
-
     .container {
-        width: 100% !important;
-        max-width: none !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        box-shadow: none !important; /* 移除内发光 */
-    }
-
-    /* 2. 移除所有模块的深色背景和霓虹效果 */
-    .section, .sidebar-section, .project-item, strong {
-        background-color: transparent !important;
-        background: transparent !important;
         box-shadow: none !important;
-        color: #000000 !important;
-        border: none !important; /* 移除原来的边框 */
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        max-width: 100%;
     }
-    
-    /* 给模块增加简单的底部线条作为分割 */
     .section, .sidebar-section {
-        border-bottom: 1px solid #ddd !important;
-        margin-bottom: 20px !important;
-        padding: 10px 0 !important;
-    }
-
-    /* 3. 标题样式优化：变黑，移除发光 */
-    .header h1 {
-        color: #000000 !important;
-        text-shadow: none !important;
-        border-bottom: 2px solid #000000 !important;
-        font-size: 24pt;
-    }
-
-    .section h2, .sidebar-section h2 {
-        color: #000000 !important; /* 既然是打印，标题也用黑色或深灰 */
-        background-color: transparent !important;
-        text-shadow: none !important;
-        border-left: 5px solid #000 !important; /* 左侧装饰线改为黑色 */
-        margin-top: 20px;
-    }
-
-    .timeline-item h3, .project-item h3 {
-        color: #333 !important; /* 二级标题深灰色 */
-        border-left: 3px solid #666 !important;
-    }
-
-    /* 4. 布局保持：强制两栏结构 */
-    .content-grid {
-        display: grid !important;
-        grid-template-columns: 30% 65% !important; /* 左侧稍微调宽一点点以适应纸张 */
-        gap: 20px !important;
-    }
-
-    .sidebar {
-        border-right: 1px solid #ccc !important; /* 侧边栏右侧加一条灰线分割 */
-        padding-right: 15px !important;
-    }
-
-    /* 5. 细节修正 */
-    
-    /* 链接：打印出来要有下划线，黑色 */
-    a {
-        color: #000000 !important;
-        text-decoration: none !important;
-    }
-    
-    /* 联系方式 */
-    .contact-info {
-        color: #000 !important;
-        border-top: 1px solid #000 !important;
-    }
-    .contact-info a {
-        color: #000 !important;
-    }
-
-    /* 头像：移除霓虹光圈 */
-    .profile-photo {
-        border: 2px solid #000 !important;
         box-shadow: none !important;
-        filter: grayscale(100%); /* 可选：打印时将照片转为黑白，显得更专业 */
+        border: 1px solid #ccc !important;
+        background-color: #fff !important;
+        page-break-inside: avoid;
     }
-
-    /* 列表项 */
-    ul li {
+    .header h1, .section h2 {
         color: #000 !important;
-        border-left: none !important; /* 移除虚线边框 */
+        border-color: #000 !important;
     }
-    
-    /* 列表前面的箭头改为黑色 */
-    ul li::before {
-        color: #000 !important;
-    }
-
-    /* 高亮关键词 (strong) */
     strong {
-        color: #000 !important;
-        font-weight: bold !important;
         background-color: transparent !important;
-        text-decoration: underline; /* 打印时用下划线代替高亮色块 */
-    }
-    
-    /* 隐藏不必要的元素 */
-    .portfolio-link {
-        border: 1px solid #000 !important;
         color: #000 !important;
-        background: none !important;
+        font-weight: bold;
     }
-    
-    /* 隐藏纯装饰性的长链接显示，防止打断排版（可选） */
-    .online-resume-link {
-        display: none !important; 
+    a {
+        text-decoration: none;
+        color: #000 !important;
     }
+    .profile-photo {
+        border-color: #ccc !important;
+    }
+}
+
+/* --- 在线链接样式更新 --- */
+.online-resume-link {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #e1e4e8; 
+}
+
+.online-resume-link p {
+    margin: 0;
+    font-size: 14px;
+    color: #546e7a; /* 深灰蓝 */
+}
+
+.link-label {
+    font-weight: bold;
+    color: #008f58; /* 翠绿 */
+    margin-right: 5px;
+}
+
+.actual-url {
+    color: #9b59b6; /* 使用紫色区分URL，显得优雅 */
+    text-decoration: none;
+    font-size: 14px;
+    font-family: monospace;
+    background-color: rgba(155, 89, 182, 0.05);
+    padding: 2px 5px;
+    border-radius: 3px;
 }
