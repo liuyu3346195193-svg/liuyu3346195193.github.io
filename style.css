@@ -289,71 +289,111 @@ hr {
     margin-bottom: 40px;
 }
 
-/* --- 打印样式 (Print) --- */
 @media print {
+    /* --- 核心打印设置：强制黑白高对比 --- */
     body {
-        background: #fff !important;
-        color: #000 !important;
+        background: #fff !important;         /* 强制白色背景 */
+        background-color: #fff !important; 
+        color: #000 !important;              /* 强制黑色文字 */
         background-image: none !important;
+        box-shadow: none !important;
     }
+
     .container {
         box-shadow: none !important;
         padding: 0;
-        margin: 0;
-        width: 100%;
-        max-width: 100%;
+        margin: 0 auto;
+        max-width: 900px !important;
     }
-    .section, .sidebar-section {
-        box-shadow: none !important;
+
+    /* --- 布局修复：强制切换为单列堆叠 --- */
+    .content-grid {
+        display: block !important; /* 取消 Grid 布局，切换为 Block 堆叠 */
+    }
+
+    .sidebar {
+        border-right: none !important;
+        padding-right: 0 !important;
+        margin-bottom: 20px; /* 在堆叠时，侧边栏底部增加间距 */
+    }
+    
+    .main-content {
+        padding-left: 0 !important; /* 移除主内容区左侧的内边距 */
+    }
+
+    /* --- 头部修复：确保联系信息居中堆叠 --- */
+    .profile-header {
+        flex-direction: column; /* 标题和照片堆叠 */
+        align-items: center;    /* 居中对齐 */
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .header h1 {
+        font-size: 2.2em !important; /* 减小标题尺寸 */
+        border-bottom: 1px solid #000 !important; /* 细黑线 */
+        color: #000 !important;
+        padding-bottom: 10px !important;
+    }
+
+    /* 修复联系信息行：强制换行并居中对齐 */
+    .contact-info {
+        flex-direction: column; /* 将所有联系信息堆叠成列 */
+        align-items: center;    /* 居中对齐 */
+        gap: 5px 0;             /* 减少堆叠时的间距 */
+        margin-bottom: 15px !important;
+        border-top: none !important; /* 移除虚线 */
+        padding-top: 0 !important;
+    }
+    
+    .contact-info a {
+        color: #000 !important;
+        text-decoration: none !important;
+    }
+    
+    /* 隐藏不必要的元素（如飞书链接按钮）*/
+    .portfolio-link, .link-label {
+        display: none !important;
+    }
+    
+    /* 保持照片可见，但样式简化 */
+    .profile-photo {
+        width: 80px !important;
+        height: 80px !important;
         border: 1px solid #ccc !important;
+        box-shadow: none !important;
+        margin-bottom: 15px; /* 与标题分开 */
+        order: -1; /* 确保照片在标题之前 */
+    }
+
+    /* --- 内容样式简化 --- */
+    .section, .sidebar-section {
         background-color: #fff !important;
+        border: 1px solid #ccc !important; /* 细灰色边框 */
+        box-shadow: none !important;
         page-break-inside: avoid;
     }
-    .header h1, .section h2 {
+    
+    .section h2, .timeline-item h3, .project-item h3 {
         color: #000 !important;
         border-color: #000 !important;
+        text-shadow: none !important;
     }
-    strong {
+    
+    /* 确保粗体和链接是黑色的 */
+    strong, a {
+        color: #000 !important;
         background-color: transparent !important;
-        color: #000 !important;
-        font-weight: bold;
     }
-    a {
-        text-decoration: none;
+    
+    ul li::before {
         color: #000 !important;
     }
-    .profile-photo {
-        border-color: #ccc !important;
+
+    .online-resume-link {
+        /* 保持在线简历链接在底部 */
+        border-top: 1px solid #ccc !important;
+        padding-top: 10px;
     }
 }
 
-/* --- 在线链接样式更新 --- */
-.online-resume-link {
-    width: 100%;
-    text-align: center;
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid #e1e4e8; 
-}
-
-.online-resume-link p {
-    margin: 0;
-    font-size: 14px;
-    color: #546e7a; /* 深灰蓝 */
-}
-
-.link-label {
-    font-weight: bold;
-    color: #008f58; /* 翠绿 */
-    margin-right: 5px;
-}
-
-.actual-url {
-    color: #9b59b6; /* 使用紫色区分URL，显得优雅 */
-    text-decoration: none;
-    font-size: 14px;
-    font-family: monospace;
-    background-color: rgba(155, 89, 182, 0.05);
-    padding: 2px 5px;
-    border-radius: 3px;
-}
