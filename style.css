@@ -290,93 +290,130 @@ hr {
     margin-bottom: 40px;
 }
 
-/* 打印优化 */
+/* =========================================
+   打印专用样式 (Print Styles) - 修正版 v2.0
+   核心逻辑：强制白底黑字，移除特效，保留布局
+   ========================================= */
 @media print {
-    /* 核心修改 1: 强制使用深色背景和浅色文字 */
+    /* 1. 全局重置：白底黑字 */
     body {
-        background: #0d1a2f !important; /* 强制背景为深紫蓝色 */
-        background-color: #0d1a2f !important; 
-        color: #c0c8d1 !important; /* 强制文字颜色为浅灰蓝 */
-        background-image: none !important; 
-        box-shadow: none !important;
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+        background-image: none !important; /* 移除网格背景 */
+        color: #000000 !important; /* 纯黑文字 */
+        -webkit-print-color-adjust: exact;
+        font-size: 12pt; /* 打印时字号稍微调大更易读 */
     }
 
     .container {
-        box-shadow: none !important;
-        padding: 0;
-        /* margin: 0; <-- 移除，避免干扰布局继承 */
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important; /* 移除内发光 */
     }
 
-    /* 标题颜色需要保持浅色以在深色背景下可见 */
-    .header h1, .section h2, .timeline-item h3, .project-item h3 {
-        color: #00ff80 !important; /* 保持荧光绿 */
+    /* 2. 移除所有模块的深色背景和霓虹效果 */
+    .section, .sidebar-section, .project-item, strong {
+        background-color: transparent !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        color: #000000 !important;
+        border: none !important; /* 移除原来的边框 */
+    }
+    
+    /* 给模块增加简单的底部线条作为分割 */
+    .section, .sidebar-section {
+        border-bottom: 1px solid #ddd !important;
+        margin-bottom: 20px !important;
+        padding: 10px 0 !important;
+    }
+
+    /* 3. 标题样式优化：变黑，移除发光 */
+    .header h1 {
+        color: #000000 !important;
         text-shadow: none !important;
-        border-color: #00ff80 !important; 
+        border-bottom: 2px solid #000000 !important;
+        font-size: 24pt;
     }
 
-    /* 核心修改 2: 移除卡片默认的浅色背景，恢复深色基调 */
-    .section {
-        background: rgba(13, 26, 47, 0.9) !important; /* 使用深色透明背景 */
-        background-color: rgba(13, 26, 47, 0.9) !important; 
-        border: 1px solid rgba(0, 229, 255, 0.4) !important; /* 边框改为可见的青色 */
-        box-shadow: none !important;
+    .section h2, .sidebar-section h2 {
+        color: #000000 !important; /* 既然是打印，标题也用黑色或深灰 */
+        background-color: transparent !important;
+        text-shadow: none !important;
+        border-left: 5px solid #000 !important; /* 左侧装饰线改为黑色 */
+        margin-top: 20px;
     }
-    
-    /* 核心修改 3: 移除导致单栏排版的样式，继承 Grid 两栏布局 */
-    /* .content-grid { display: block; } <-- 原本在这里，已移除 */
+
+    .timeline-item h3, .project-item h3 {
+        color: #333 !important; /* 二级标题深灰色 */
+        border-left: 3px solid #666 !important;
+    }
+
+    /* 4. 布局保持：强制两栏结构 */
+    .content-grid {
+        display: grid !important;
+        grid-template-columns: 30% 65% !important; /* 左侧稍微调宽一点点以适应纸张 */
+        gap: 20px !important;
+    }
+
     .sidebar {
-        border-right: none;
-        padding-right: 0;
+        border-right: 1px solid #ccc !important; /* 侧边栏右侧加一条灰线分割 */
+        padding-right: 15px !important;
+    }
+
+    /* 5. 细节修正 */
+    
+    /* 链接：打印出来要有下划线，黑色 */
+    a {
+        color: #000000 !important;
+        text-decoration: none !important;
     }
     
-    ul li::before {
-        content: '▶'; /* 保持自定义项目符号 */
-        color: #00ff80 !important;
+    /* 联系方式 */
+    .contact-info {
+        color: #000 !important;
+        border-top: 1px solid #000 !important;
     }
-    strong {
-        /* 保持高亮关键词可见 */
-        background-color: rgba(255, 255, 0, 0.2) !important; 
-        color: #fff !important;
+    .contact-info a {
+        color: #000 !important;
     }
-    hr {
-        background-image: none !important;
-        border-top: 1px solid #ccc;
+
+    /* 头像：移除霓虹光圈 */
+    .profile-photo {
+        border: 2px solid #000 !important;
         box-shadow: none !important;
+        filter: grayscale(100%); /* 可选：打印时将照片转为黑白，显得更专业 */
+    }
+
+    /* 列表项 */
+    ul li {
+        color: #000 !important;
+        border-left: none !important; /* 移除虚线边框 */
     }
     
-}
-/* style.css 底部代码：顶部在线链接样式 */
-.contact-info {
-    /* 确保联系信息容器可以容纳新增的链接行 */
-    padding-bottom: 5px; 
-}
+    /* 列表前面的箭头改为黑色 */
+    ul li::before {
+        color: #000 !important;
+    }
 
-.online-resume-link {
-    /* 强制新起一行，并居中 */
-    width: 100%;
-    text-align: center;
-    margin-top: 10px; /* 与上方的“随时到岗”信息保持间距 */
-    padding-top: 5px;
-    border-top: 1px solid rgba(0, 255, 128, 0.3); /* 轻微分隔线 */
-}
-
-.online-resume-link p {
-    margin: 0;
-    font-size: 14px; /* 略微突出 */
-    color: #ffffff; /* 保持白色文字 */
-}
-
-.link-label {
-    /* 标签文字样式 */
-    font-weight: bold;
-    color: #00ff80; /* 使用霓虹绿 */
-    margin-right: 5px;
-}
-
-.actual-url {
-    /* 实际 URL 链接样式：重要且可复制 */
-    color: #ff99ff; /* 突出显示，可以使用霓虹紫或亮色 */
-    text-decoration: none; /* 移除下划线，保持清爽 */
-    font-size: 14px;
-    font-family: monospace; /* 可选：使用等宽字体更像网址 */
+    /* 高亮关键词 (strong) */
+    strong {
+        color: #000 !important;
+        font-weight: bold !important;
+        background-color: transparent !important;
+        text-decoration: underline; /* 打印时用下划线代替高亮色块 */
+    }
+    
+    /* 隐藏不必要的元素 */
+    .portfolio-link {
+        border: 1px solid #000 !important;
+        color: #000 !important;
+        background: none !important;
+    }
+    
+    /* 隐藏纯装饰性的长链接显示，防止打断排版（可选） */
+    .online-resume-link {
+        display: none !important; 
+    }
 }
